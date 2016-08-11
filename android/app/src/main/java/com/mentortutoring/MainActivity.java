@@ -1,6 +1,7 @@
 package com.mentortutoring;
 
 import com.facebook.react.ReactActivity;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 public class MainActivity extends ReactActivity {
 
