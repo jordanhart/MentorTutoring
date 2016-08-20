@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './app/userAgent';
+import io from 'socket.io-client/socket.io';
 import MentorTutor from './app/courseview';
 import {
   AppRegistry,
@@ -17,6 +19,9 @@ class MentorTutoring extends Component {
     this.state = {
       user: null
     };
+    var socket = io.connect("http://10.0.0.47:5000");
+socket.emit('message','hi');
+
   }
 
   componentDidMount() {
