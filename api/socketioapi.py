@@ -7,8 +7,9 @@ socketio = SocketIO(app)
 
 @socketio.on('message')
 def handleMessage(msg):
-	print('Message: ' + msg)
-	send(msg, brodcast=True)
+    print('Message: ' + msg)
+    emit('message', 'message recieved')
 
 if __name__ == '__main__':
-	socketio.run(app)
+	socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+
