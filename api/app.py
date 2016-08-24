@@ -3,6 +3,7 @@ from flask import Flask, render_template, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room, \
     close_room, rooms, disconnect
 
+
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
 # the best option based on installed packages.
@@ -12,6 +13,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 thread = None
+
 
 
 def background_thread():
@@ -28,6 +30,15 @@ def background_thread():
 def handleMessage(msg):
     print('Message: ' + msg)
     emit('message', 'message recieved')
+
+
+@socketio.on('login')
+    def handleMessage(credsList):
+        first_name = credsList[0]
+        last_name = credsList[1]
+        email = credsList[2]
+        
+        emit('message', 'message recieved')
 
 @app.route('/')
 def index():
